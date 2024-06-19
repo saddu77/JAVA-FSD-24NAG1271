@@ -35,7 +35,15 @@ class Stack{
 		}
 	}
 	
-	
+	int peek() {
+		if ( top < 0) {
+			System.out.println("Stack Underflow...");
+			return 0;
+		} else {
+			int x = a[top];
+			return x;
+		}
+	}
 	void print() {
 		for(int i = top; i > -1; i--) {
 			System.out.println(" " + a[i]);
@@ -60,6 +68,9 @@ public class Test9 {
 		System.out.println(s.pop() + " Popped from stack");
 		System.out.println("----------------");
 		s.print();
+		System.out.println("-----------------");
+		System.out.println(s.peek());
+		
 	}
 
 }

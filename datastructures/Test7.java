@@ -56,6 +56,15 @@ class Queue{
 	
 	}
 	
+	static void queueFront() {
+		if(front == rear) {
+			System.out.println("\n Queue is Empty");
+			return;
+		}
+		System.out.printf("\n Front Element is: %d", queue[front]);
+		
+	}
+	
 }
 
 public class Test7 {
@@ -82,6 +91,8 @@ public class Test7 {
 		q.queueDeque();
 		System.out.println("\nAFter deleteing Element :");
 		q.queueDisplay();
+		
+		q.queueFront();
 		
 	}
 

@@ -94,6 +94,84 @@ class DoublyLinkedList{
 		i++;
 		
 	}
+	
+	//Function to insert Node at any position
+	static void insertAtPosition(int k, int pos){
+		if( pos < 1 || pos > i + 1) {
+			System.out.println("Enter a Valid Position");
+		}else if ( pos == 1) {
+			insertAtBeginning(k);
+		} else if(pos == i + 1) {
+			insertAtEnd(k);
+		}else {
+			//traverse till position pos
+			Node src = head;
+			//Moving head pointer to pos
+			while(pos--!=0) {
+				src = src.next;
+			}
+			//Allocate Memory to new node
+			Node nodeA,nodeB;
+			Node ptr = new Node();
+			ptr.next = null;
+			ptr.prev = null;
+			ptr.key = k;
+			
+			//change the prev and next pointer of the nodes inserted
+			nodeB = src;
+			nodeA = (src.prev);
+			ptr.next = (nodeB);
+			ptr.prev = (nodeA);
+			nodeA.next = ptr;
+			nodeB.prev = ptr;
+			i++;
+		}
+		
+	}
+	
+	//delete Node at beginning
+	static void deleteAtBegining(){
+		//move head to next and decrease length by 1
+		head = head.next;
+		i--;
+	}
+	
+	//delete at end
+	static void deleteAtEnd() {
+		tail = tail.prev;
+		tail.next = null;
+		i--;
+	}
+	
+	//delete at Position
+	static void deleteAtPos(int pos){
+		if ( pos < 1 || pos > i + 1) {
+			System.out.println("Enter a Valid Position");
+		}else if ( pos == 1) {
+			deleteAtBegining();
+		}else if ( pos == i) {
+			deleteAtEnd();
+		}else {
+			//src node to find which node to be deleted
+			Node src = head;
+			pos--;
+			
+			//traverse Node until pos
+			while(pos--!=0) {
+				src = src.next;
+			}
+			//prev and after node of src
+			Node prev,aftr;
+			prev = (src.prev);
+			aftr = (src.next);
+			
+			//change the next and prev pointer
+			prev.next = (aftr);
+			aftr.prev = (prev);
+			i--;
+		}
+	}
+	
 }
 public class Test12 {
 
@@ -118,6 +196,22 @@ public class Test12 {
 		dll.traverse();
 		
 		dll.insertAtEnd(120);
+		
+		dll.traverse();
+		
+		dll.insertAtPosition(130, 6);
+		
+		dll.traverse();
+		
+		dll.deleteAtBegining();
+		
+		dll.traverse();
+		
+		dll.deleteAtEnd();
+		
+		dll.traverse();
+		
+		dll.deleteAtPos(6);
 		
 		dll.traverse();
 		
