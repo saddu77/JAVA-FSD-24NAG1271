@@ -8,12 +8,12 @@ class HashTable{
 		String value;
 		HashNode next;
 		
-		public HashNode(Product key, String value) {
-			super();
-			this.key = key;
-			this.value = value;
+			public HashNode(Product key, String value) {
+				super();
+				this.key = key;
+				this.value = value;
+			}
 		}
-	}
 		private LinkedList<HashNode>[] buckets;
 		private int capacity;
 		private int size;
@@ -56,7 +56,8 @@ class HashTable{
 		public String get(Product key) {
 			int bucketIndex = getBucketIndex(key);
 			LinkedList<HashNode> bucket = buckets[bucketIndex];
-			if(bucket == null) return null;
+			if(bucket == null) 
+				return null;
 			
 			for(HashNode node : bucket) {
 				if(node.key.equals(key)) {
