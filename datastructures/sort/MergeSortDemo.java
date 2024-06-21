@@ -67,7 +67,7 @@ public class MergeSortDemo {
 		printArr(arr);
 		
 		sort(arr,0,arr.length - 1);
-		System.out.println("\n Sorted Arrat is:");
+		System.out.println("\n Sorted Array is:");
 		printArr(arr);
 	}
 
