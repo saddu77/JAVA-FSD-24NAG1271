@@ -1,5 +1,5 @@
 package datastructures;
-
+//Single Linked List
 class LinkedList{
 	//head of list
 	Node head;

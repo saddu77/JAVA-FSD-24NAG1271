@@ -51,7 +51,7 @@ public class BFSDemo {
 		graph.addEdge(2, 4 );
 		
 		System.out.println("Breadth First Traversal starting from vertex 0: ");
-		graph.bfs(0);
+		graph.bfs(2);
 		
 	}
 

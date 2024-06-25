@@ -1,0 +1,477 @@
+8:45 AM TO 5:45 PM
+
+SESSION1: 8:45 AM - 10:40 AM
+SB1 : 10:40 AM TO 11:00 AM
+LAB1 : 11:00 AM TO 1:00 PM [executions-assignments]
+
+LUNCH BREAK : 1:00 PM To 2:00 PM 
+
+SESSION2 : 2:00 PM To 3:40 PM 
+SB2 : 3:40 PM TO 4:00 PM 
+LAB2 : 4:00 PM TO 5:45 PM [executions-assignments]
+
+
+1. Syntax:
+2. Example:
+3. Task:
+4. Scenario based execution:
+
+
+-> Core Java:
+-> HTML5 CSS3 and JavaScript
+-> React
+-> J2EE 
+
+	JavaFullStack Developer
+
+Web Developer: 
+	Role and Responsibity:  Develop,Build,Test,Deploy,Maintain
+
+Tools:
+	-> Setting up JDK: Java Development Kit
+	   -------------
+			-> Download JDK : version 11/17/22 etc...			
+				Executing HelloWorld without eclipse 
+				step1: Creating a new file: HelloWorld.java
+				Step2: Writing HelloWorld Program
+				step3: Save File as HelloWorld.java
+				step4: javac HelloWorld.java <- this command generated HelloWorld.class automatically
+				step5: java HelloWorld
+				
+	
+
+
+	-> Eclipse IDE: Integrated Development Environment
+			we maintain Java Projects
+
+			 -> Setting Eclipse IDE
+				File -> New -> Project -> Java Project -> 
+
+			-> Executing HelloWorld with Java
+
+	java --version
+	
+	Task:
+		1. What is web Programning
+		2. Features of Java 
+		3. Steps to setup jdk 
+		4. Write a Welcome.java Program to display welcome message.
+
+ 
+		-> variables and functions
+		-> operators,conditions and loops
+		-> data types: primitive and non primitive
+		-> String,Arrays,Collection etc..
+		
+
+
+	
+
+	Overview of Data Structures
+
+		Classification of Data Structures: Linear vs Non-Linear
+			Linear Data Structures
+				Static Data Structures - Arrays
+
+					-> Multi dimension Array:
+								Syntax:  datatype [][] array_ref_var;
+									 int [][] arr = new int[3][3];
+
+				Dynamic Data Structures - Queue, Stack, Linked List 
+					Allocates memory at Runtime
+
+							Queue:
+								-> Add Queue Element : queueEnque
+								-> Remove Quque Element : queueDeque
+								-> Display Quque Element : queueDisplay
+
+			
+
+		
+			Imlementing Linked List in Java
+				Definition and types: Single, Double, Circular
+
+				     -------------->
+				List: 10 20 30 40 50 
+					head == null
+						data next=null
+
+						data = 10
+						next = null	
+					
+					head == new Node
+					-------------------------
+
+					Node last = new Node
+						 
+						data = 20
+						next = null
+					-------------------------
+
+				Double Linked List:	   
+					   ------>   -------->  ------>  ----->
+				      10        20        30        40      50
+					   <------   <------   <------   <-----
+
+					   next = null
+					 ptr.key  = 10
+					   prev = null
+
+						next = null
+						 ptr.key = 20
+						prev = first
+								
+						  
+
+			
+				
+
+
+
+
+				Basic operations
+					Insert at beginning, Insert at end, Insert at position, Delete node, Update node, Display
+
+			Implementing Stacks in Java
+				Definition and characteristics
+				Basic operations: Push, Pop, Peek, isEmpty
+
+			Implementing Queues in Java
+				Definition and types: Simple, Circular, Priority, Double Ended
+				Basic operations: Enqueue, Dequeue, Peek, isEmpty
+
+
+			Non-Linear Data Structures
+				Tree, Graph, Has Tables, Sets, Heaps, Tries
+
+			HashTable:
+				HashTable class implements a hash table, which maps keys to values.
+
+				In order to store and retrive objects from a hastable,the objects used as keys must implement the hashCde method 
+				and equals method.
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+		Search Algorithms for the above Data Structures (Problem Type)
+
+			Linear Search (Strategy: Brute Force): Sequential Search
+
+				Applications:
+
+				-> Small data set
+				-> Searching LinkedList
+				-> Simple Implementations.
+
+				Advantages:
+
+				-> Used irrspective od wherther array is sorted or not.
+				-> It can be used on arrays of any data type
+				-> well suited for small data set.
+				
+				DisAdvantage:
+
+				-> slow for large dataset.
+				> Not suitable for large datset.
+
+
+
+
+			Binary Search (Strategy: Divide and Conquer)
+				Array should be sorted
+				mid = low + (high-low)/2
+
+				[ 10 20 30 40 50 ], 40
+				   0  1 2  3  4   <- array index
+
+				itreration1:
+
+				low =  0
+				high = 4
+
+				mid = 0 + (4 - 0)/ 2
+				mid = 2
+				
+				30 == 40
+				
+				30 < 40
+					low = 2 + 1
+					low = 3
+
+				
+				iteration2:
+				low = 3
+				high = 5
+				mid = 3 + (4 - 3) /2
+				mid = 3
+
+				40 == 40
+					return 3
+				
+
+				
+				
+				
+
+			Jump Search (Strategy: Divide and Conquer)
+			
+			
+			Product search by Id using Binary Search 
+			Product Search by Id using Jump Search
+
+
+
+		Sort Algorithms for the above Data Structures (Problem Type)
+			Bubble Sort (Strategy: Exchanging)
+			Quick Sort (Strategy: Divide and Conquer)
+			Merge Sort (Strategy: Divide and Conquer)
+			Heap Sort (Strategy: Selection)
+
+--------------------------------------------------------------------------------------------------------------------------
+Implementing Tree in Java
+	Definition and types: Binary, AVL, Red-Black, Tries, Heaps
+
+	
+
+	Basic operations: Insert, Search, Delete, Traversal (In-order(Left->Root->Right), 
+							    Pre-order(Root->Left->Right), 
+							    Post-order(Left->Right->Root))
+
+-----------------------------------------------------------------------------------------------
+		root 
+	left		right
+
+	
+---------------------------------------------------------------------------------------------
+	Iteration1:   
+			check root is null ? yes 
+				create a new node with value 1 and set as root
+							key = 1 and root = 1
+	Iteration2:
+
+			check root is null ? no
+			2 < 1 ? no
+			2 > 1 ? yes
+				create a new node with value 2 and set as right child of root
+							key = 2 and root = 1
+											1
+												2			
+	Iteration3:
+			check root is null ? No
+			3 < 1 ? no
+			3 > 1 ? yes
+				check if right child of root(2) is null: No
+			3 < right child(2) ? : No
+			3 > right child(2) ? : Yes
+				check if right child of Node (2) is null : Yes
+			
+				create a new node with value 3 and set as right child of node(2)
+
+											1
+												2
+													3
+												
+
+	Iteration4:
+			check root is null ? No
+			4 < 1 ? no
+			4 > 1 ? yes
+				check if right child of root(2) is null: No
+			4 < right child(2) ? : No
+			4 > right child(2) ? : Yes
+				check if right child of Node (3) is null : No
+			4 < right child(3)? : No
+			4 > right child(3)? : Yes
+				check if right child of Node (3) is null : Yes
+				create a new node with value 4 and set as right child of node(3)
+			
+											1
+												2
+													3
+														4
+															5	
+			
+			
+-----------------------------------------------------------------------------------------------
+
+Implementing Graph in Java
+	Definition and types: Directed, Undirected, Weighted, Unweighted, Directed Acyclic
+
+	Basic operations: Add Vertex, Add Edge, Display
+
+		Graph:
+			Its a non linear Data Structure consisting of vertices and edges.
+				vertices: nodes
+				edges: lines connecting 2 nodes 
+
+		1. Adjacency Matrix
+
+					0	1	2
+
+				0		1	1	
+
+				1	1		1
+
+				2	1	1
+
+
+
+
+
+
+
+
+
+		2. Adjacenct List:
+
+				An array of list is used to store edges between two vertices.
+
+
+			
+
+Tree and Graph (Collection) Algorithms (Problem Type)
+	Breadth-First Search (Strategy: Queue)
+	Depth-First Search (Strategy: Stack)
+	Union-Find Algorithm for Cycle Detection (Strategy: Disjoint Set)
+
+Graph Algorithms (Problem Type)
+-------------------------------
+
+	1. Dijkstra’s Algorithm (Strategy: Greedy Method)
+	
+		finding the shortest paths between nodes in graph.
+
+		-> I - Initialiazation:
+
+			step1: set the distance to the source node to 0.
+
+			step2: set the distance to all other nodes to Infinity.
+
+			step3: Mark all nodes as unvisited
+
+			step4: set the source ode as the current node.
+		
+		-> II - Visit the Current Node:
+			
+			step1: For the current node,consider all of its unvisited neighbors.
+
+			step2: For Each neighbor,calculate the tentative distance from the source node.
+				This is the distance to the current node plus the distance from the current node to the neighbor.
+
+			step3:If this tentative distance is less than the currently known distance,update the shortest distance to the neighbor.
+
+			
+		->III - Mark the Current Node as Visited:
+
+			Step1: Mark the current node as visited.
+
+		-> IV - Select the Next Node:
+			
+			Step1: Select the unvisited node with the smallest tentative distance and set it as the new current node.
+
+			step2: Repeat steps II ,III,IV until all nodes have been visited.
+
+		-> V - End of the Algorithm:
+
+			-> when all nodes have been visited,the alogrithm ends.
+				The shortest distances to all nodes from the cource node are known.
+
+			Example:
+			--------
+
+				
+				
+					10
+				(A) ----- (B)
+				 | \       |
+
+				1|   4\	   |1
+
+				 |      \  | 
+				(C) ------(D)
+				     2
+
+				start with node 'A':
+				Initialization:
+						dist[A]=0
+						dist[B]=∞
+						dist[C]=∞
+						dist[D]=∞
+				Set A as current node.
+
+
+				Iteration1:
+					Current node : 'A'
+						Neighbors: 'B','C','D'
+
+						Tentaive Distances:
+							'dist[B]=min(∞, 0 + 10) = 10
+							'dist[C]=min(∞, 0 + 1) = 1
+							'dist[D]=min(∞, 0 + 4) = 4
+						
+						Mark 'A' as visited.
+						Set 'C' as the next node (smallest tentative distance)
+
+
+
+
+				Iteration2:
+					Current node : 'C'
+						Neighbors: 'A','D'
+
+						Tentaive Distances:
+							
+							'dist[A]=min(0, 1 + 1) = 0(No change)
+							'dist[D]=min(4, 1 + 2) = 3
+						
+						Mark 'C' as visited.
+						Set 'D' as the next node (smallest tentative distance)
+
+				Iteration3:
+					Current node : 'D'
+						Neighbors: 'B','C'
+
+						Tentaive Distances:
+							
+							'dist[B]=min(10, 3 + 1) = 4
+							'dist[C]=min(1, 3 + 2) = 1(no change)
+						
+						Mark 'D' as visited.
+						Set 'B' as the next node (smallest tentative distance)
+
+
+				Iteration4:
+					Current node : 'B'
+						Neighbors: 'A','D'
+
+						Tentaive Distances:
+							
+							'dist[A]=min(0, 4 + 10) = 0(No change)
+							'dist[D]=min(3, 4 + 1) = 3 (No change)
+						
+						Mark 'B' as visited.
+						
+
+			Final distances:
+					dist[A]=0
+					dist[B]=4
+					dist[C]=1
+					dist[D]=3
+				
+
+
+
+	2. Floyd-Warshall Algorithm (Strategy: Dynamic Programming)
+
+	3. Kruskal’s Minimum Spanning Tree Algorithm (Strategy: Greedy Method)
+
+	4. Bellman-Ford Algorithm (Strategy: Dynamic Programming)
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+		
+
+

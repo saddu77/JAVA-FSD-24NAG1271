@@ -1,9 +1,10 @@
 package datastructures;
-
+//Double Linked List
 class Node {
 	int key;
 	Node prev;
 	Node next;
+	
 	Node(){
 		prev = null;
 		next =null;
@@ -21,19 +22,19 @@ class DoublyLinkedList{
 	static void addNode(int k){
 		Node ptr = new Node();
 		//assign key
-		ptr.key = k;		
+		ptr.key = k; 		
 		//next and prev ptr to null
-		ptr.next = null;
-		ptr.prev = null;		
+		ptr.next = null; 
+		ptr.prev = null; 		
 		//if linked list is empty
 		if( head == null) {
 			head = ptr;
 			first = head;
 			tail = head;
 		}else { //insert at the end of the linkedlist
-			temp = ptr;
-			first.next = temp;
-			temp.prev = first;
+			temp = ptr;    
+			first.next = temp; 
+			temp.prev = first; 
 			first = temp;
 			tail = temp;			
 		}
@@ -107,7 +108,7 @@ class DoublyLinkedList{
 			//traverse till position pos
 			Node src = head;
 			//Moving head pointer to pos
-			while(pos--!=0) {
+			while(pos-- != 0) {
 				src = src.next;
 			}
 			//Allocate Memory to new node

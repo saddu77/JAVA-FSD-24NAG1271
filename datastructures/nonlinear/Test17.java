@@ -1,5 +1,5 @@
 package datastructures.nonlinear;
-
+//Binary Tree Data Structure
 class Node {
 	int key;
 	Node left, right;
@@ -9,11 +9,12 @@ class Node {
 		left = right = null;
 	}
 }
-class BinarySearchTree{
+
+class BinaryTree{
 	Node root;
 	
 	//constructor
-	BinarySearchTree(){
+	BinaryTree(){
 		root = null;
 	}
 	//insert a new key
@@ -22,19 +23,20 @@ class BinarySearchTree{
 	}
 	
 	Node insertRec(Node root, int key) {
-		// TODO Auto-generated method stub
+		
 		if(root == null) {
-			root = new Node(key);
+			root = new Node(key);			
 			return root;
 		}
-		if(key < root.key) {
-			root.left = insertRec(root.left, key);
+		
+		if(key < root.key) {			
+			root.left = insertRec(root.left, key);			
 		}
 			
-		else if (key > root.key) {
-			root.right = insertRec(root.right,key);
+		else if (key > root.key) {			
+			root.right = insertRec(root.right,key);			
 		}
-			
+		
 		return root;
 	}
 	
@@ -114,7 +116,12 @@ public class Test17 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		BinarySearchTree tree = new BinarySearchTree();
+		BinaryTree tree = new BinaryTree();
+		tree.insert(1);
+		tree.insert(2);
+		tree.insert(3);
+		tree.insert(4);
+		tree.insert(5);
 //		tree.insert(50);
 //		tree.insert(30);
 //		tree.insert(20);
@@ -123,21 +130,21 @@ public class Test17 {
 //		tree.insert(60);
 //		tree.insert(80);
 		
-		tree.insert(25);		
-		tree.insert(15);
-		tree.insert(10);
-		tree.insert(4);
-		tree.insert(12);
-		tree.insert(22);
-		tree.insert(18);
-		tree.insert(24);
-		tree.insert(50);
-		tree.insert(35);
-		tree.insert(31);
-		tree.insert(44);
-		tree.insert(70);
-		tree.insert(66);
-		tree.insert(90);
+//		tree.insert(25);		
+//		tree.insert(15);
+//		tree.insert(10);
+//		tree.insert(4);
+//		tree.insert(12);
+//		tree.insert(22);
+//		tree.insert(18);
+//		tree.insert(24);
+//		tree.insert(50);
+//		tree.insert(35);
+//		tree.insert(31);
+//		tree.insert(44);
+//		tree.insert(70);
+//		tree.insert(66);
+//		tree.insert(90);
 		
 		
 		System.out.println("Inorder Traversal:");
