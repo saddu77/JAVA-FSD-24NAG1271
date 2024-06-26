@@ -463,7 +463,170 @@ Graph Algorithms (Problem Type)
 
 	2. Floyd-Warshall Algorithm (Strategy: Dynamic Programming)
 
+		finding the shortest paths between all pairs of vertices in a weighted graph.
+
+I - Initialization:
+
+	step1: Create a 2D array dist where dist[i][j] represents the shortest distance from vertex i to vertex j.
+
+	step2: Initialize dist[i][j] to be the weight of the edge from i to j if it exists, and ∞ (infinity) if it doesn't. 
+				Set dist[i][i] to 0 for all i.
+
+II - Dynamic Programming:
+
+	step1: Use each vertex as an intermediate point and try to improve the shortest path between every pair of vertices (i, j).
+	
+	step2: For each pair (i, j), update dist[i][j] to be the minimum of 
+		dist[i][j] and dist[i][k] + dist[k][j] for every possible intermediate vertex k.
+
+	step3:
+		Repesat step2 for all vertices k to consider all possible intermediate vertices.
+
+
+Result:
+
+	After considering all vertices as intermediate points, 
+	dist[i][j] will contain the shortest distance from vertex i to vertex j.
+
+	Consider the following graph:
+				    10
+				(0)----- (1)
+				 | 	 |
+				1| 	 | 2
+				 |       |
+				(2)-----(3)
+				     1
+		The adjacency matrix representation of the graph, where ∞ (infinity) represents no direct path between the vertices, is:
+------------------------------------------------------------------------------------------
+	Initial Distance Matrix:
+
+			0	1	2	3
+
+		0	0      10      1       inf
+
+		1       10     0	inf     2
+
+		2 	1      inf     0        1
+
+		3	inf    2        1       0
+-----------------------------------------------------------------------------------------
+		Iteration1:
+
+		k = 0: update distances using vertex 0 as an intermediate
+
+			0	1	2	3
+
+		0	0      10      1       inf
+
+		1       10     0	11     2
+
+		2 	1      11     0        1
+
+		3	inf    2        1       0
+
+-----------------------------------------------------------------------------------------
+		Iteration2:
+
+		k = 1: update distances using vertex 1 as an intermediate
+
+			0	1	2	3
+
+		0	0      10      1       12
+
+		1       10     0	11     2
+
+		2 	1      11     0        1
+
+		3	12    2        1       0
+-----------------------------------------------------------------------------------------
+		Iteration3:
+
+		k = 2: update distances using vertex 2 as an intermediate vertex
+
+			0	1	2	3
+
+		0	0      10      1       12
+
+		1       10     0       11      2
+
+		2 	1      11     0        1
+
+		3	2     2        1       0
+-----------------------------------------------------------------------------------------
+		Iteration4:
+
+		k = 3: update distances using vertex 3 as an intermediate vertex
+
+			0	1	2	3
+
+		0	0      4       1       2
+
+		1       4      0       3       2
+
+		2 	1      3       0        1
+
+		3	2     2        1       0
+
+			
+
+
+
 	3. Kruskal’s Minimum Spanning Tree Algorithm (Strategy: Greedy Method)
+
+		Kruskal’s Minimum Spanning Tree Algorithm (Strategy: Greedy Method)
+
+Algorithm steps: 
+	step1: Sort all edges in the graph in non-decreasing order of their weight.
+	step2: Pick the smallest edge.check if it forms a cycle with Spanning tree formed.
+		If cycle is not formed ,include this edge else discard it.
+
+
+				8		7
+			1  ---------	2 -----------3
+		  4 /   |		|\	     | \
+		  /	|		|  \  	     |   \
+		  0	|	     /  8    \4	     |14  4
+		   \	|        /	|	\    |   /
+		   8\	|  /	7	|	  \  | /
+			7 ----------	6 ---------- 5
+				1		2
+
+		Weight Source Destination
+		 1      7        6              
+
+		 2      8	 2
+		 2      6        5
+
+		 4      0        1
+		 4	2	 5
+
+		 6      8        6
+
+		 7      2	 3
+		 7      7        8
+
+		 8	0	 7
+		 8	1	 2
+
+		 9      3        4
+
+		10      5        4
+
+		11	1        7
+		
+		14	3	 5
+
+
+						7
+			1  		2 -----------3
+		  4 /   	       2|\	      \9
+		  /			|  \  	        \
+		  0		       8    \4	         4
+		   \	       		\       
+		   8\	  			  \   
+			7 ----------	6 ---------- 5
+				1		2
+      
 
 	4. Bellman-Ford Algorithm (Strategy: Dynamic Programming)
 
