@@ -630,11 +630,362 @@ Algorithm steps:
 
 	4. Bellman-Ford Algorithm (Strategy: Dynamic Programming)
 
+		Bellman-Ford Algorithm (Strategy: Dynamic Programming)
+
+--------------------------------------------------------
+
+	It starts with a single source and calculates the distance to each node.
+
+		The distance is initially unknown and assumed to be infinite ,as the time goes on,the algorithm relaxes
+		those paths by identifying a few shorter paths. Principle of Relaxation.
+
+		
+
+
+
+					2
+				(B)		(D)
+			   5				2
+			
+			(A)	 1		-1	 (F)
+
+						       -3
+				(C)	1	(E)
+---------------------------------------------------------------------------------------------------------------
+
+
+	Step 1:
+					2
+				(B)		(D)
+			   5	(∞)		(∞)	2
+		source	
+		------>	(A)	 1		-1	 (F)	dist[] = A	B	C	D	E	F
+			(0)				 (∞)		 0	∞	∞	∞	∞	∞
+						       -3
+				(C)	1	(E)
+				(∞)		(∞)
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+	Step 2: Start relaxing the edges, during 1st Relaxation:
+
+						2
+				(B)		(D)
+			   5	(5)		(∞)	2
+		source	
+		------>	(A)	 1		-1	 (F)	dist[] = A	B	C	D	E	F
+			(0)				 (∞)		 0	5	∞	∞	∞	∞
+						       -3
+				(C)	1	(E)
+				(∞)		(∞)
+
+	
+
+		Dist[A] + 5 < Dist[B]
+		  0     + 5 < (∞)
+		Dist[B] = 5
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+	Step3: 2nd Relaxation
+
+
+			-> Current Distance of D > (Dist of B) + (weight of B to D ) i.e ∞ > 5 + 2
+					Dist[D] = 7
+
+			-> Current Distance of C > (Dist of B) + (weight of B to C )i.e  ∞ > 5 + 1
+					Dist[C] = 6
+
+			
+						2
+				(B)		(D)
+			   5	(5)		(7)	2
+		source	
+		------>	(A)	 1		-1	 (F)	dist[] = A	B	C	D	E	F
+			(0)				 (∞)		 0	5	6	7	∞	∞
+						       -3
+				(C)	1	(E)
+				(6)		(∞)
+
+	
+
+		Dist[B] + 2 < Dist[D]
+		  5     + 2 < (∞)
+		Dist[D] = 7
+
+		...................
+		Dist[B] + 1 < Dist[C]
+		  5     + 1 < (∞)
+		Dist[C] = 6
+		
+--------------------------------------------------------------------------------------------------------------------
+
+
+	Step4: 3rd Relaxation
+
+			-> Current Distance of F > (Dist of D) + (weight of D to F ) i.e ∞ > 7 + 2
+					Dist[F] = 9
+
+			-> Current Distance of E > (Dist of C) + (weight of C to E )i.e  ∞ > 6 + 1
+					Dist[E] = 7
+
+			
+						2
+				(B)		(D)
+			   5	(5)		(7)	2
+		source	
+		------>	(A)	 1		-1	 (F)	dist[] = A	B	C	D	E	F
+			(0)				 (9)		 0	5	6	7	7	9
+						       -3
+				(C)	1	(E)
+				(6)		(7)
+
+	
+
+		Dist[D] + 2 < Dist[F]
+		  9     + 2 < (∞)
+		Dist[F] = 9
+
+		...................
+		Dist[C] + 1 < Dist[E]
+		  6     + 1 < (∞)
+		Dist[E] = 7
+-----------------------------------------------------------------------------------------------------------
+
+Step5: 4rd Relaxation
+
+			-> Current Distance of D > (Dist of E) + (weight of E to D ) i.e 7 > 7 + (-1)
+					Dist[D] = 6
+
+			-> Current Distance of F > (Dist of F) + (weight of F to E )i.e  7 > 9 + (-3)
+					Dist[E] = 6
+
+			
+						2
+				(B)		(D)
+			   5	(5)		(6)	2
+		source	
+		------>	(A)	 1		-1	 (F)	dist[] = A	B	C	D	E	F
+			(0)				 (9)		 0	5	6	7	7	9
+						       -3
+				(C)	1	(E)
+				(6)		(6)
+
+	
+
+		Dist[E] + 2 < Dist[D]
+		  7     + (-1) < 7
+		Dist[D] = 6
+
+		...................
+		Dist[F] + 1 < Dist[E]
+		  9     + (-3) < (6)
+		Dist[E] = 6
+----------------------------------------------------------------------------------------------------------------------
+Step6: 5TH Relaxation
+
+			-> Current Distance of F > (Dist of D) + (weight of D to F ) i.e 9 > 6 + 2
+					Dist[F] = 8
+
+			-> Current Distance of D > (Dist of E) + (weight of F to D )i.e  6 > 6 + (-1)
+					Dist[E] = 5
+
+			
+						2
+				(B)		(D)
+			   5	(5)		(5)	2
+		source	
+		------>	(A)	 1		-1	 (F)	dist[] = A	B	C	D	E	F
+			(0)				 (8)		 0	5	6	5	6	8
+						       -3
+				(C)	1	(E)
+				(6)		(6)
+
+	
+
+		Dist[E] + 2 < Dist[D]
+		  6     + (-1) < 6
+		Dist[D] = 5
+
+		...................
+		Dist[D] + 2 < Dist[F]
+		  6     + 2 < 9
+		Dist[F] = 8
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Step7:
+final Relaxation: it should indicate the presence of negative cycle if there is any changes in the
+		 distance array of 5th relaxation.
+		
+
+
+			-> Current Distance of E > (Dist of F) + (weight of F to E ) i.e 6 > 8 + (-3)
+					Dist[E] = 5
+
+			-> Current Distance of F > (Dist of D) + (weight of D to F )i.e  8 > 5 + 2
+					Dist[F] = 7
+
+			
+						2
+				(B)		(D)
+			   5	(5)		(5)	2
+		source	
+		------>	(A)	 1		-1	 (F)	dist[] = A	B	C	D	E	F
+			(0)				 (7)		 0	5	6	4	5	7
+						       -3
+				(C)	1	(E)
+				(6)		(5)
+
+	
+
+		Dist[F] + (-3) < Dist[E]
+		  8     + (-3) < 6
+		Dist[E] = 5
+
+		...................
+		Dist[D] + 2 < Dist[F]
+		  6     + 2 < 8
+		Dist[F] = 7
+
+
+					
+
+
+	Result: A Negative cycle D -> F -> E exist in graph
+
+
 ------------------------------------------------------------------------------------------------------------------------
 
 
+Rabin-Karp Algorithm (Strategy: Hashing)
 
+	Text = "ABBCCDDAEFG";
+	pattern = "CDD";
+	Alphabet size(d) :  256
+	Prime Number (q) :  101
 
+	1. hash = (256 square) mod 101 = 65536 mod 11 = 88
+
+	2  A=65 B=66 C=67  D=68
+
+		p = (67.256 square +  68.256 + 68 ) mod 101 = (67*65536 + 68*256+ 68) mod 101 
+	
+	
 		
+	
+	Deterministic Finite Automation: (DFA)
+
+		For each input symbol: one can determine the state to which the machine will move.
+
+			It has a finite number of states
+			
+			DFA consists of 5 tuples {Q, Σ, q, F, δ}. 
+
+		Q: set of all states.
+		Σ: set of input symbols. (Symbols which machine takes as input)
+		q: Initial state. (Starting state of a machine)
+		F: set of final state.
+		δ: Transition Function, defined as δ: Q X Σ --> Q.
+
+
+		Graphical Representation of DFA:
+		
+			state diagram
+					-> vertices represent the states
+					-> arcs labeled  withan input alphabet show the transitions
+					-> initial state is denoted by an empty single incoming arc
+					-> final state is indicated by double circles.
+
+
+			Example:
+
+				Q = {a,b,c},
+				Σ = {0,1},
+				Q0 = {a},
+				F = {c}
+
+				δ: Transition Function:
+
+				Present state 		Next State 		Next State for
+							input 0			Input1
+
+					a		a			b
+
+					b		c			a
+
+					c		b			c
+
+			Steps to Generate the Hash Value
+
+Step 1: Choose Parameters
+Alphabet size (d): The number of characters in the input alphabet. For ASCII, d = 256.
+Prime number (q): A prime number used to mod the hash value to avoid overflow and reduce collisions. For example, q = 101.
+
+Step 2: Calculate the Initial Hash Value for the Pattern and the First Window of the Text
+The hash value is calculated using a polynomial hash function.
+ For a string s of length m, the hash value is computed as follows:
+
+	hash(s)=(s[0]⋅d pow(m−1)+s[1]⋅d pow(m−2)+…+s[m−2]⋅d+s[m−1]) mod q
+Where:
+
+s[i] is the ASCII value of the i-th character of the string s.
+d is the number of characters in the input alphabet.
+q is a prime number.
+
+Step1: Calculate h:
+		Calculate h as 𝑑 pow( 𝑚 − 1) mod 𝑞 d (m−1) mod q, where m is the length of the pattern.
+
+		h=(d pow(m−1)) mod q=(256 pow(2)) mod 101= 65536 mod 101 = 88
+
+Step2: Compute the Initial Hash Values:
+Compute the hash value for the pattern and the first window of the text.
+
+		Pattern "CDD":
+		hash(CDD)=(C⋅d pow(2)+ D⋅d+ D) mod q
+		
+
+		Convert characters to ASCII values (C=67, D=68):
+		
+		hash(CDD)=(67⋅256 pow(2)+68⋅256+68) mod q
+
+		Simplify using modulo arithmetic:
+
+		hash(CDD)=(67⋅65536+68⋅256+68) mod 101
+
+		Calculate step-by-step:
+
+			67⋅65536 mod 101=67⋅88 mod 101=5896 mod 101=37
+
+			68⋅256 mod 101=68⋅256 mod 101=17408 mod 101=50
+
+			hash(CDD)=(37+50+68) mod 101=155 mod 101=54
+
+			First window of the text "ABC":
+
+				hash(ABC)=(A⋅d2+B⋅d+C)mod q
+
+			Convert characters to ASCII values (A=65, B=66, C=67):
+
+
+			hash(ABC)=(65⋅256 pow(2)+66⋅256+67) mod q
+
+			Simplify using modulo arithmetic:
+
+
+				hash(ABC)=(65⋅65536+66⋅256+67) mod 101
+
+			Calculate step-by-step:
+
+				65⋅65536 mod 101=65⋅88 mod 101=5720 mod 101=65
+
+
+				66⋅256 mod 101=66⋅256 mod 101=16896 mod 101=77
+
+				hash(ABC)=(65+77+67) mod 101= 209 mod 101 = 7
+
 
 
