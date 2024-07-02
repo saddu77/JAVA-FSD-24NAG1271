@@ -1044,6 +1044,324 @@ obj.union(3, 1);
 ==================================================================
 
 
+Boyer Moore Algorithm (Strategy: Heuristic)
+				Its an Efficient string searching algorithm that uses information from the pattern to skip sections of the text.
+	It consist of two heuristic: Bad character Heuristic and Good Suffix Heuristic.
+
+	Bad character Heuristic:
+				It suggests that when a mismatch occurs ,the pattern can be shifted so that the mismatched character in the
+			text aligns with the last occurance of that character in pattern.
+
+			If the character does not occur in the pattern,the pattern can be shifted past the mismatched character.
+
+ 
+
+
+	Good Suffix Heuristic:
+
+		It suggests that when a mismatch occurs ,the pattern can be shifted so that the part of the pattern after the mismatch (the suffix)
+		matches another occurance of that suffix in the pattern.
+
+			If the siffix does not occur again,the pattern can be shifted past the suffix.
+
+
+
+
+	Example:
+		
+
+
+		1. Initial Alignment:
+
+			text:    ABAAABCD
+
+			pattern: ABC
+
+		2.	Compare from right to left:
+			D != C:
+				mismatch
+			Using Bad character Heuristic:shift the pattern to the right by 3(length of pattern) because D does not appear in the pattern.
+
+
+		3. Second Alignment:
+			ABAAABCD
+			   ABC
+
+		4.	B != C:
+				mismatch
+			Using Bad character Heuristic:shift the pattern to the right by 1(B is found at index1) in the pattern.
+
+		5. Third Alignment:
+			ABAAABCD
+			    ABC
+
+		6. Third comparision:
+			A != C:
+				mismatch
+
+				Using Bad character Heuristic:shift the pattern to the right by 1(A is found at index 0) in the pattern.
+
+		7. Fourth Alignment:
+			ABAAABCD
+			     ABC
+
+		8. Fourth Comparision:
+				A != C:
+					mismatch
+
+			Using Bad character Heuristic:shift the pattern to the right by 1.
+
+
+		9. Fifth Alignment:
+				ABAAABCD
+				      ABC
+
+		10. Fifth comparision:
+				A != C:
+					mismatch
+			Using Bad character Heuristic:shift the pattern to the right by 1.
+
+		11. Sixth Alignment:
+			ABAAABCD
+			     ABC
+
+		12. Sixth Comparision:
+				B != C:
+					mismatch
+			Using Bad character Heuristic:shift the pattern to the right by 1.
+
+		
+		13. Seventh Alignment:
+				ABAAABCD
+				      ABC
+
+				C == C
+				B == B
+				A == A: match found
+
+				
+	
+
+		Count set bits (Strategy: Bit Manipulation) :
+							Counting the number of set bits(1s)in an Integer is a challenge ,Bit manipulation provides an efficient way to solve this problem.
+
+		Strategy: Brian Kernighan's algorithm.
+
+						This algorithm works by repeatedly flipping the least significant set bit to zero 
+	and counting the number of iterations needed until the number becomes zero.
+
+			
+
+		Brian Kernighan's algorithm:
+					perform the operation `n = n &(n-1)` repeatedly and count how many times this operation is performed until `n'
+		becomes zero.
+
+		Each operation `n = n & (n - 1)` removes the lowest set bit from `n`.
+
+		Example:
+			n = 29  ---> 11101
+
+			1. Initial Value:
+
+					n = 29 
+					set bit count : 0
+
+			2. First Iteration:
+
+					n = n & (n - 1)
+
+					n = 29 & 28 (11101 & 11100)
+					n = 28 (11100)
+					set bit count : 1
+
+			3. Second Iteration:
+
+					n = n & (n - 1)
+
+					n = 28 & 27 (11100 & 11011)
+					n = 24 (11000)
+					set bit count : 2
+
+			4. Third Iteration:
+
+					n = n & (n - 1)
+
+					n = 24 & 23 (11000 & 10111)
+					n = 16 (10000)
+					set bit count : 3
+
+			5. Fourth Iteration:
+
+					n = n & (n - 1)
+
+					n = 16 & 15 (10000 & 01111)
+					n = 0 (00000)
+					set bit count : 4
+
+
+==============================================================================================
+
+
+ input Array: [4,1,2,1,2,3,4,5]	
+
+1. XOR :
+		4 ^ 1 ^ 2 ^ 1 ^ 2 ^ 3 ^ 4 ^ 5 = 3 ^ 5 = 6( 0110)
+			xor = 6
+
+		4 : 0 ^ 4 = 4 0000 ^ 0100 = 0100
+
+		1: 4 ^ 1 = 5 0100 ^ 0001 = 0101
+
+		
+2. Find a set bit in xor:
+
+		1. For 6(0110 ) -> 0010 (right most set bit)
+
+
+3. Divide elements into two groups and XOR:
+	
+	Group1: [2 2 3] where set bit is 1
+
+		2: 0010
+
+		2: 0010
+
+		3: 0011
+
+	Group2: [4,1,1,4,5] where set bit is 0
+
+		4: 0100
+		1: 0001
+		1: 0001
+		4: 0100
+		5: 0101
+
+		2 ^ 2 ^ 3 = 3
+
+		4 ^ 1 ^ 1 ^ 4 ^ 5 = 5
+
+		so no repeating elementa are: 3  and 5
+===================================================================================================================
+
+Swap Bits (Strategy: Bit  Manipulation) :
+	
+
+	Input:
+	x = 29 (11101)
+	i = 1
+	j = 3
+
+	Step 1. check if bits are different:
+
+			ith bit:
+			(x >> 1) & 1 = (29 >> 1) & 1 = 14(1110) & 0001 = 0000 = 0
+
+			jth bit:       11101 11  & 1 =   
+			(x >> 3) & 1 = (29 >> 3) & 1 = (0011)3 & 0001 = 0001= 1
+
+			x >> i
+		
+			11101 >> 1 = 1110 (14)
+
+			11101 >> 3 = 11(3)
+
+			
+
+	Step2: 	Create a Mask:
+
+			Mask: ( 1 << 1) | (1 << 3) = 2 | 8 = 10 (1010)
+                                  
+				0001 << 1 = 0010 | 1000 = 1010
+
+
+	
+	 Combine two masks Using Bitwise OR: (mask is used to flip the bits at position i and j)
+
+				(1 << i) | (1 << j)
+
+			 ex:    0010 | 1000 => 1010
+
+
+	Step3:
+			x ^= mask = 29 ^ 10 = 10011 (19)
+
+			return the modified number
+				
+
+
+
+========================================================================================================
+
+Count total set bits(1s) in all numbers from 1 to n (Strategy: Bit Manipulation) 
+
+	1. set Bits:
+
+			A set bit in  binary representation of a number is a bit with a value of 1.
+
+		example: for number 5 : 101  contains two set bits
+
+	2. Pattern:
+			0 : 000
+			1 : 001       1
+			2 : 010       1
+			3 : 011       2
+			4 : 100       1
+			5 : 101       2
+			6 : 110       2
+			7 : 111       3
+
+
+	3. 
+		-> initialize counter
+		-> Iterate over bits
+		-> for each bit position i:
+					-> calculate how many full cycles length 2^(i+1) fit in n+1. 
+					-> calculate the number of extra bits contributed by the remaining
+						 numbers beyond the full cycles.
+				
+	
+
+		Optimize the Bitwise AND of all subsets of an array (Strategy: Bit Manipulation)
+
+			1.        1 & 1 = 1
+				  1 & 0 = 0
+				  0 & 1 = 0
+				  0 & 0 = 0
+
+				For an Array: if element has 0 in a particular bit,AND of any subset containing that element
+						will have a 0 in that bit position.
+
+			
+
+			2.  
+				initialize
+				iterate throughout the array: until result is 0
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
